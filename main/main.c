@@ -17,6 +17,7 @@
 #include <dht/dht.h>
 
 #include "fujitsu_ac_ir.h"
+#include <rboot-api.h> //include this in your own code
 
 
 #define TEMPERATURE_POLL_PERIOD 10000
@@ -46,6 +47,8 @@ void reset_configuration_task() {
     vTaskDelay(1000 / portTICK_PERIOD_MS);
 
     printf("Restarting\n");
+    
+    rboot_set_temp_rom(1); //select the OTA main routine
 
     sdk_system_restart();
 
